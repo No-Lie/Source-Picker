@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.JFileChooser;
 import javax.swing.JRadioButton;
@@ -16,8 +20,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-
-
 public class GUI extends JFrame {
 
 	private JPanel cpMain;
@@ -25,6 +27,8 @@ public class GUI extends JFrame {
 	private final ButtonGroup bgChooseLicense = new ButtonGroup();
 	private JTextField tfProjectPath;
 	private final ButtonGroup bgAgain = new ButtonGroup();
+	private String licenseName = "";
+	private File destFile;
 
 	/**
 	 * Launch the application.
@@ -91,6 +95,7 @@ public class GUI extends JFrame {
 				openFile.setAcceptAllFileFilterUsed(false);				
 				if (openFile.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 		            tfProjectPath.setText(openFile.getSelectedFile().toString());
+		            destFile = openFile.getSelectedFile();
 		            btnNext.setEnabled(true);
 		        } else {
 		        }
@@ -195,21 +200,9 @@ public class GUI extends JFrame {
 		rbApache.setForeground(SystemColor.activeCaptionText);
 		rbApache.setBackground(SystemColor.desktop);
 		bgChooseLicense.add(rbApache);
-		final JRadioButton rbArtistic = new JRadioButton("Artistic");
-		rbArtistic.setBounds(20, 157, 109, 23);
-		cpChooseLicense.add(rbArtistic);
 		
-		//rbArtistic
-		rbArtistic.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnNext.setEnabled(true);
-			}
-		});
-		rbArtistic.setForeground(SystemColor.activeCaptionText);
-		rbArtistic.setBackground(SystemColor.desktop);
-		bgChooseLicense.add(rbArtistic);
 		final JRadioButton rbBSD2Clause = new JRadioButton("BSD 2-Clause");
-		rbBSD2Clause.setBounds(20, 188, 109, 23);
+		rbBSD2Clause.setBounds(20, 157, 109, 23);
 		cpChooseLicense.add(rbBSD2Clause);
 		
 		//rbBSD2Clause
@@ -222,7 +215,7 @@ public class GUI extends JFrame {
 		rbBSD2Clause.setBackground(SystemColor.desktop);
 		bgChooseLicense.add(rbBSD2Clause);
 		final JRadioButton rbBSD3Clause = new JRadioButton("BSD 3-Clause");
-		rbBSD3Clause.setBounds(20, 219, 109, 23);
+		rbBSD3Clause.setBounds(20, 188, 109, 23);
 		cpChooseLicense.add(rbBSD3Clause);
 		
 		//rbBSD3Clause
@@ -235,7 +228,7 @@ public class GUI extends JFrame {
 		rbBSD3Clause.setBackground(SystemColor.desktop);
 		bgChooseLicense.add(rbBSD3Clause);
 		final JRadioButton rbWTFPL = new JRadioButton("WTFPL");
-		rbWTFPL.setBounds(20, 250, 109, 23);
+		rbWTFPL.setBounds(20, 219, 109, 23);
 		cpChooseLicense.add(rbWTFPL);
 		
 		//rbWTFPL
@@ -255,10 +248,10 @@ public class GUI extends JFrame {
 		cpMain.add(cpFinish);
 		cpFinish.setLayout(null);
 		
-		final JLabel lblAgain = new JLabel("Would you like to add a license to another file?");
+		final JLabel lblAgain = new JLabel("Would you like to add a license to another project?");
 		lblAgain.setForeground(SystemColor.windowText);
 		lblAgain.setBackground(SystemColor.window);
-		lblAgain.setBounds(20, 11, 284, 14);
+		lblAgain.setBounds(20, 11, 310, 14);
 		cpFinish.add(lblAgain);
 		
 		final JRadioButton rbAgain = new JRadioButton("Yes");
@@ -314,7 +307,6 @@ public class GUI extends JFrame {
 				rbGPLv3.setVisible(false);
 				rbMIT.setVisible(false);
 				rbApache.setVisible(false);
-				rbArtistic.setVisible(false);
 				rbBSD2Clause.setVisible(false);
 				rbBSD3Clause.setVisible(false);
 				rbWTFPL.setVisible(false);
@@ -361,7 +353,6 @@ public class GUI extends JFrame {
 				rbGPLv3.setVisible(true);
 				rbMIT.setVisible(true);
 				rbApache.setVisible(true);
-				rbArtistic.setVisible(true);
 				rbBSD2Clause.setVisible(true);
 				rbBSD3Clause.setVisible(true);
 				rbWTFPL.setVisible(true);
@@ -395,14 +386,31 @@ public class GUI extends JFrame {
 					ButtonModel buttonModel = bgKnowLicense.getSelection();
 					if (buttonModel != null)
 					{
+						for (Enumeration<AbstractButton> buttons = bgChooseLicense.getElements(); buttons.hasMoreElements();) {
+				            AbstractButton button = buttons.nextElement();
+
+				            if (button.isSelected()) {
+				                licenseName = button.getText();
+				            }
+				        }
 						cpChooseLicense.setVisible(false);
 						cpChooseProjectFolder.setVisible(true);
 					}
 				}
 				else if(cpChooseProjectFolder.isVisible())
-				{
-					cpChooseProjectFolder.setVisible(false);
-					cpFinish.setVisible(true);
+				{					
+					if (tfProjectPath.getText() != null)
+					{//+ licenseName
+						FileHandler file = new FileHandler(licenseName,destFile);
+						try {
+							file.addLicenseToProject();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						cpChooseProjectFolder.setVisible(false);
+						cpFinish.setVisible(true);
+					}
 				}
 				else if(cpFinish.isVisible() && rbAgain.isSelected())
 				{
