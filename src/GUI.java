@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class GUI extends JFrame {
 
@@ -54,7 +55,7 @@ public class GUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 350, 350);
 		cpMain = new JPanel();
-		cpMain.setBackground(SystemColor.desktop);
+		cpMain.setBackground(Color.WHITE);
 		cpMain.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(cpMain);
 		cpMain.setLayout(null);	
@@ -65,28 +66,28 @@ public class GUI extends JFrame {
 		final JButton btnCancel = new JButton("Cancel");
 		
 		final JPanel cpChooseProjectFolder = new JPanel();
-		cpChooseProjectFolder.setBackground(SystemColor.desktop);
+		cpChooseProjectFolder.setBackground(Color.WHITE);
 		cpChooseProjectFolder.setBounds(0, 0, 340, 279);
 		cpMain.add(cpChooseProjectFolder);
 		cpChooseProjectFolder.setLayout(null);
 		
 		final JLabel lblChooseProjectFolder = new JLabel("Choose a project folder!");
 		lblChooseProjectFolder.setForeground(SystemColor.activeCaptionText);
-		lblChooseProjectFolder.setBackground(SystemColor.desktop);
+		lblChooseProjectFolder.setBackground(Color.WHITE);
 		lblChooseProjectFolder.setBounds(22, 11, 135, 14);
 		cpChooseProjectFolder.add(lblChooseProjectFolder);
 		
 		tfProjectPath = new JTextField();
 		tfProjectPath.setEditable(false);
 		tfProjectPath.setForeground(SystemColor.windowText);
-		tfProjectPath.setBackground(SystemColor.desktop);
+		tfProjectPath.setBackground(Color.WHITE);
 		tfProjectPath.setBounds(22, 42, 209, 20);
 		cpChooseProjectFolder.add(tfProjectPath);
 		tfProjectPath.setColumns(10);
 		
 		final JButton btnBrowse = new JButton("Browse");
-		btnBrowse.setForeground(SystemColor.menuText);
-		btnBrowse.setBackground(SystemColor.desktop);
+		btnBrowse.setForeground(Color.BLACK);
+		btnBrowse.setBackground(Color.WHITE);
 		btnBrowse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser openFile = new JFileChooser();
@@ -105,6 +106,7 @@ public class GUI extends JFrame {
 		cpChooseProjectFolder.add(btnBrowse);
 		
 		final JPanel cpKnowLicenseChoice = new JPanel();
+		cpKnowLicenseChoice.setBackground(Color.WHITE);
 		cpKnowLicenseChoice.setBounds(0, 0, 340, 279);
 		cpMain.add(cpKnowLicenseChoice);
 		cpKnowLicenseChoice.setLayout(null);
@@ -120,7 +122,7 @@ public class GUI extends JFrame {
 		});
 		bgKnowLicense.add(rbKnowLicense);
 		rbKnowLicense.setForeground(SystemColor.activeCaptionText);
-		rbKnowLicense.setBackground(SystemColor.desktop);
+		rbKnowLicense.setBackground(Color.WHITE);
 		final JRadioButton rbDoNotKnowLicense = new JRadioButton("I do not know which license I want");
 		rbDoNotKnowLicense.setBounds(20, 64, 224, 23);
 		cpKnowLicenseChoice.add(rbDoNotKnowLicense);
@@ -133,19 +135,22 @@ public class GUI extends JFrame {
 		});
 		bgKnowLicense.add(rbDoNotKnowLicense);
 		rbDoNotKnowLicense.setForeground(SystemColor.activeCaptionText);
-		rbDoNotKnowLicense.setBackground(SystemColor.desktop);
+		rbDoNotKnowLicense.setBackground(Color.WHITE);
 		
 		final JPanel cpDidNotChooseLicense = new JPanel();
+		cpDidNotChooseLicense.setBackground(Color.WHITE);
 		cpDidNotChooseLicense.setBounds(0, 0, 340, 279);
 		cpMain.add(cpDidNotChooseLicense);
 		cpDidNotChooseLicense.setLayout(null);
 		
 		final JPanel cpChooseLicense = new JPanel();
+		cpChooseLicense.setBackground(Color.WHITE);
 		cpChooseLicense.setBounds(0, 0, 340, 279);
 		cpMain.add(cpChooseLicense);
 		cpChooseLicense.setLayout(null);
 		
 		final JLabel lblPickLicense = new JLabel("Please pick a license!");
+		lblPickLicense.setBackground(Color.WHITE);
 		lblPickLicense.setBounds(20, 11, 158, 14);
 		cpChooseLicense.add(lblPickLicense);
 		final JRadioButton rbGPLv2 = new JRadioButton("GPLv2");		
@@ -159,7 +164,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbGPLv2.setForeground(SystemColor.activeCaptionText);
-		rbGPLv2.setBackground(SystemColor.desktop);
+		rbGPLv2.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbGPLv2);
 		final JRadioButton rbGPLv3 = new JRadioButton("GPLv3");
 		rbGPLv3.setBounds(20, 64, 109, 23);
@@ -172,7 +177,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbGPLv3.setForeground(SystemColor.activeCaptionText);
-		rbGPLv3.setBackground(SystemColor.desktop);
+		rbGPLv3.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbGPLv3);
 		final JRadioButton rbMIT = new JRadioButton("MIT");
 		rbMIT.setBounds(20, 95, 109, 23);
@@ -185,7 +190,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbMIT.setForeground(SystemColor.activeCaptionText);
-		rbMIT.setBackground(SystemColor.desktop);
+		rbMIT.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbMIT);
 		final JRadioButton rbApache = new JRadioButton("Apache");
 		rbApache.setBounds(20, 126, 109, 23);
@@ -198,7 +203,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbApache.setForeground(SystemColor.activeCaptionText);
-		rbApache.setBackground(SystemColor.desktop);
+		rbApache.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbApache);
 		
 		final JRadioButton rbBSD2Clause = new JRadioButton("BSD 2-Clause");
@@ -212,7 +217,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbBSD2Clause.setForeground(SystemColor.activeCaptionText);
-		rbBSD2Clause.setBackground(SystemColor.desktop);
+		rbBSD2Clause.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbBSD2Clause);
 		final JRadioButton rbBSD3Clause = new JRadioButton("BSD 3-Clause");
 		rbBSD3Clause.setBounds(20, 188, 109, 23);
@@ -225,7 +230,7 @@ public class GUI extends JFrame {
 			}
 		});
 		rbBSD3Clause.setForeground(SystemColor.activeCaptionText);
-		rbBSD3Clause.setBackground(SystemColor.desktop);
+		rbBSD3Clause.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbBSD3Clause);
 		final JRadioButton rbWTFPL = new JRadioButton("WTFPL");
 		rbWTFPL.setBounds(20, 219, 109, 23);
@@ -238,25 +243,25 @@ public class GUI extends JFrame {
 			}
 		});
 		rbWTFPL.setForeground(SystemColor.activeCaptionText);
-		rbWTFPL.setBackground(SystemColor.desktop);
+		rbWTFPL.setBackground(Color.WHITE);
 		bgChooseLicense.add(rbWTFPL);	
 		
 		final JPanel cpFinish = new JPanel();
 		cpFinish.setForeground(SystemColor.windowText);
-		cpFinish.setBackground(SystemColor.window);
+		cpFinish.setBackground(Color.WHITE);
 		cpFinish.setBounds(0, 0, 340, 279);
 		cpMain.add(cpFinish);
 		cpFinish.setLayout(null);
 		
 		final JLabel lblAgain = new JLabel("Would you like to add a license to another project?");
 		lblAgain.setForeground(SystemColor.windowText);
-		lblAgain.setBackground(SystemColor.window);
+		lblAgain.setBackground(Color.WHITE);
 		lblAgain.setBounds(20, 11, 310, 14);
 		cpFinish.add(lblAgain);
 		
 		final JRadioButton rbAgain = new JRadioButton("Yes");
 		rbAgain.setForeground(SystemColor.windowText);
-		rbAgain.setBackground(SystemColor.window);
+		rbAgain.setBackground(Color.WHITE);
 		rbAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNext.setEnabled(true);
@@ -268,7 +273,7 @@ public class GUI extends JFrame {
 		
 		final JRadioButton rbNotAgain = new JRadioButton("No and exit");
 		rbNotAgain.setForeground(SystemColor.windowText);
-		rbNotAgain.setBackground(SystemColor.window);
+		rbNotAgain.setBackground(Color.WHITE);
 		rbNotAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNext.setEnabled(true);
@@ -437,8 +442,8 @@ public class GUI extends JFrame {
 		
 		btnNext.setBounds(142, 285, 89, 23);
 		cpMain.add(btnNext);
-		btnNext.setForeground(SystemColor.windowText);
-		btnNext.setBackground(SystemColor.desktop);
+		btnNext.setForeground(Color.BLACK);
+		btnNext.setBackground(Color.WHITE);
 		btnNext.setEnabled(false);
 		
 		//btnBack
@@ -477,8 +482,8 @@ public class GUI extends JFrame {
 		});
 		btnBack.setBounds(43, 285, 89, 23);
 		cpMain.add(btnBack);
-		btnBack.setForeground(SystemColor.windowText);
-		btnBack.setBackground(SystemColor.desktop);
+		btnBack.setForeground(Color.BLACK);
+		btnBack.setBackground(Color.WHITE);
 		btnBack.setEnabled(false);
 		
 		//btnCancel
@@ -489,8 +494,8 @@ public class GUI extends JFrame {
 		});
 		btnCancel.setBounds(241, 285, 89, 23);
 		cpMain.add(btnCancel);
-		btnCancel.setForeground(SystemColor.windowText);
-		btnCancel.setBackground(SystemColor.desktop);
+		btnCancel.setForeground(Color.BLACK);
+		btnCancel.setBackground(Color.WHITE);
 		
 		cpKnowLicenseChoice.setVisible(true);
 		cpDidNotChooseLicense.setVisible(false);
